@@ -1,3 +1,10 @@
+
+## Installation
+
+On Ubuntu/Debian, install the full TeX Live distribution:
+
+```bash
+sudo apt install texlive-full
 # LaTeX Makefile
 
 This Makefile automates LaTeX → PDF compilation (with BibTeX support) into a `build/` directory.
