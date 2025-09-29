@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+% Professional font setup
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}  % Times New Roman for text
+\usepackage[scaled=0.9]{helvet}  % Helvetica for sans-serif
+\usepackage{courier}   % Courier for monospace
+\renewcommand{\familydefault}{\rmdefault}  % Use Times as default
+
+\title{Review Questions and Solutions\\Dynamic IoT Applications and Isomorphic IoT Systems Using WebAssembly}
+\author{Uddhav P. Gautam, Ram Mude\\
+\small upgautam@vt.edu, ramm@vt.edu}
+\date{}
+
+\begin{document}
+\maketitle
+
+\singlespacing
+
+\section*{Case Study Information}
+\textbf{Case Study:} Kuribayashi, K., Miyake, Y., Rikitake, K., Tanaka, K., \& Shinoda, Y. (2023). Dynamic IoT Applications and Isomorphic IoT Systems Using WebAssembly. 2023 IEEE 9th World Forum on Internet of Things (WF-IoT).
+
+\textbf{Key Focus Areas:} Rapid IoT device updates, multi-platform development, WebAssembly-based isomorphic systems, machine learning model deployment, performance evaluation.
+
+\section*{Question 1: Technical Architecture}
+
+\textbf{Question:} Explain how the proposed dynamic IoT application architecture enables faster updates compared to traditional firmware updates. What are the key components and how do they interact?
+
+\textbf{Context:} With the proliferation of IoT devices, developers need to respond to diverse and rapidly changing user requirements quickly. Traditional firmware updates require complete system restarts, causing significant downtime.
+
+\textbf{Solution:}
+
+The dynamic IoT application architecture achieves faster updates through a two-part design that separates stable core functionality from dynamic application logic:
+
+\textbf{Key Components:}
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Core Application (Elixir):} Handles system interfaces, hardware access, and stable functionality
+\item \textbf{Wasmtube Bridge:} Custom library that enables communication between Elixir and Wasm modules
+\item \textbf{Wasm Runtime:} Executes the dynamic application logic in an isolated sandbox
+\item \textbf{Dynamic Wasm Binary:} Contains the updatable application behavior
+\end{enumerate}
+
+\textbf{How They Interact:}
+\begin{itemize}
+\item The core Elixir application launches Wasmtube, which initializes the Wasm runtime
+\item Wasmtube creates a sandboxed environment with dedicated linear memory for the Wasm binary
+\item When updates are needed, developers deploy a new Wasm binary to the file system
+\item Linux inotify API notifies Wasmtube of the file change
+\item Wasmtube discards the old sandbox and initializes a new one with the updated binary
+\item The core application continues running without interruption
+\end{itemize}
+
+\textbf{Speed Improvement:}
+\begin{itemize}
+\item Traditional firmware updates: 10+ seconds (full OS reboot required)
+\item Wasm-based updates: 1.4 seconds (only Wasm runtime restart)
+\item \textbf{Result:} 7x faster update times
+\end{itemize}
+
+This architecture enables rapid response to changing user requirements while maintaining system stability through the separation of concerns.
+
+\section*{Question 2: Performance Analysis}
+
+\textbf{Question:} The study reports a 200-microsecond overhead for Wasm function calls compared to native Elixir execution. Analyze the significance of this overhead and explain why it's considered acceptable for the proposed use cases.
+
+\textbf{Context:} A quantitative evaluation was performed to confirm the effectiveness of the proposed method. The overhead measurement is crucial for understanding the practical viability of WebAssembly in IoT systems.
+
+\textbf{Solution:}
+
+\textbf{Overhead Analysis:}
+\begin{itemize}
+\item Native Elixir execution: 31.01 $\mu$s average
+\item Wasm function call: 252.48 $\mu$s average
+\item \textbf{Overhead:} $\sim$221 $\mu$s (approximately 200 $\mu$s as reported)
+\end{itemize}
+
+\textbf{Why This Overhead is Acceptable:}
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Constant Overhead:} The 200$\mu$s overhead is nearly constant regardless of the complexity of the Wasm function. This means:
+\begin{itemize}
+\item For simple operations: overhead dominates (221$\mu$s vs 31$\mu$s = 7x slower)
+\item For complex operations: overhead becomes negligible (221$\mu$s vs 3000ms = 0.007\%)
+\end{itemize}
+
+\item \textbf{Real-World Context:} The study demonstrates this with machine learning inference:
+\begin{itemize}
+\item MobileNetV2 inference: 588.69ms on Raspberry Pi 4
+\item Overhead percentage: 221$\mu$s / 588,690$\mu$s = 0.037\%
+\item \textbf{Negligible impact} on total processing time
+\end{itemize}
+
+\item \textbf{IoT Application Characteristics:} IoT devices typically perform:
+\begin{itemize}
+\item Sensor data collection (seconds)
+\item Data processing (milliseconds to seconds)
+\item Network communication (milliseconds)
+\item The 200$\mu$s overhead is insignificant compared to these operations
+\end{itemize}
+
+\item \textbf{Trade-off Justification:} The overhead enables:
+\begin{itemize}
+\item Dynamic updates without system downtime
+\item Cross-platform code reuse
+\item Improved development efficiency
+\item Better maintainability
+\end{itemize}
+\end{enumerate}
+
+\textbf{Conclusion:} The 200$\mu$s overhead is acceptable because it enables significant architectural benefits while being negligible for the complex, time-consuming operations typical in IoT applications, especially machine learning inference tasks.
+
+\newpage
+
+\section*{Question 3: Isomorphic IoT Systems}
+
+\textbf{Question:} How does the isomorphic IoT system concept address the challenges of multi-platform IoT development?
+
+\textbf{Context:} The study proposes isomorphic IoT systems that utilize the same Wasm binary across different layers (device, edge, cloud) of IoT infrastructure, enabling a common codebase for improved development efficiency and maintainability.
+
+\textbf{Solution:} The isomorphic IoT system concept addresses multi-platform challenges by:
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Code Reuse:} Same Wasm binary runs on different architectures (ARM, x86/64, arm64)
+\item \textbf{Reduced Complexity:} Developers maintain one codebase instead of multiple platform-specific versions
+\item \textbf{Consistent Behavior:} Identical logic across device, edge, and cloud layers
+\item \textbf{Simplified Deployment:} Single binary deployment process for all platforms
+\item \textbf{Easier Maintenance:} Bug fixes and updates applied once, deployed everywhere
+\end{enumerate}
+
+\section*{Question 4: Security Implications}
+
+\textbf{Question:} What are the security implications of using WebAssembly in IoT systems?
+
+\textbf{Context:} WebAssembly provides a sandboxed execution environment with linear memory model, but IoT systems have unique security requirements that must be carefully considered.
+
+\textbf{Solution:} Security implications include:
+
+\textbf{Benefits:}
+\begin{itemize}
+\item Sandboxed execution environment
+\item Memory safety through linear memory model
+\item Code integrity verification
+\item Isolated execution prevents system compromise
+\end{itemize}
+
+\textbf{Challenges:}
+\begin{itemize}
+\item Core application still handles sensitive system operations
+\item Need secure channels for Wasm binary distribution
+\item Runtime security depends on Wasm runtime implementation
+\item Potential for malicious Wasm binaries if not properly verified
+\end{itemize}
+
+\newpage
+
+\section*{Question 5: Technology Comparison}
+
+\textbf{Question:} The study proposes WebAssembly as a solution for platform-agnostic IoT development. Compare WebAssembly with other platform-agnostic technologies like Docker and eBPF. Why did the researchers choose WebAssembly over these alternatives?
+
+\textbf{Context:} The research addresses the need for platform-agnostic solutions in IoT development, where the same codebase must run across diverse hardware architectures and computing environments (device, edge, cloud).
+
+\textbf{Solution:}
+
+While Docker and eBPF are indeed platform-agnostic technologies, they have significant limitations for IoT applications that make WebAssembly a superior choice for the specific requirements addressed in this research.
+
+\textbf{Comparison Analysis:}
+
+\begin{center}
+\begin{tabular}{|l|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Feature} & \textbf{WebAssembly} & \textbf{Docker} & \textbf{eBPF} \\
+\hline
+Memory Overhead & $\sim$1-5MB & 50-200MB & $\sim$512KB \\
+\hline
+Update Time & 1.4s & 1-5s & N/A \\
+\hline
+Platform Support & Universal & Linux/Windows & Linux only \\
+\hline
+Security Model & Sandboxed & Containerized & Kernel space \\
+\hline
+Programming Support & Multiple languages & Any language & C-like only \\
+\hline
+ML Model Support & Full support & Full support & Limited \\
+\hline
+IoT Suitability & Excellent & Poor & Limited \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Why WebAssembly Over Docker:}
+
+\textbf{Docker Limitations:}
+\begin{itemize}
+\item \textbf{Resource Overhead:} Docker containers require full OS virtualization with 50-200MB RAM overhead, unsuitable for resource-constrained IoT devices
+\item \textbf{Security Concerns:} Docker daemon runs with elevated privileges, creating larger attack surface
+\item \textbf{Update Mechanism:} Still requires container restart, doesn't solve the partial update problem
+\item \textbf{Embedded Constraints:} Not suitable for embedded/constrained environments
+\end{itemize}
+
+\textbf{Why WebAssembly Over eBPF:}
+
+\textbf{eBPF Limitations:}
+\begin{itemize}
+\item \textbf{Kernel Dependency:} eBPF programs run in kernel space, requiring specific kernel support and versions
+\item \textbf{Programming Constraints:} Limited to C-like programming with restricted instruction set
+\item \textbf{Platform Support:} Primarily Linux-focused with limited support on embedded systems
+\item \textbf{Application Logic:} Cannot run complex ML models or business logic due to memory limitations (4KB stack, 512KB program size)
+\end{itemize}
+
+\textbf{WebAssembly Advantages for IoT:}
+
+\textbf{1. Lightweight Runtime:}
+\begin{itemize}
+\item Minimal overhead: $\sim$200$\mu$s function call overhead
+\item Small runtime footprint: $\sim$1-5MB
+\item No OS virtualization required
+\end{itemize}
+
+\textbf{2. True Platform Agnosticism:}
+\begin{itemize}
+\item Runs on ARM, x86/64, RISC-V, etc.
+\item Same binary works across device, edge, cloud layers
+\item No kernel dependencies
+\end{itemize}
+
+\textbf{3. Dynamic Updates:}
+\begin{itemize}
+\item Can replace Wasm binary without system restart
+\item Only restart Wasm runtime (1.4s vs 10s+ for full reboot)
+\item Enables true ``hot swapping'' of application logic
+\end{itemize}
+
+\textbf{4. Rich Programming Support:}
+\begin{itemize}
+\item Supports multiple languages (Rust, C++, AssemblyScript)
+\item Can run complex ML models (ResNet-50, MobileNetV2)
+\item Full application logic, not just kernel operations
+\end{itemize}
+
+\textbf{5. Security Model:}
+\begin{itemize}
+\item Sandboxed execution environment
+\item Linear memory model prevents buffer overflows
+\item No direct system access (controlled by host)
+\end{itemize}
+
+\textbf{Conclusion:}
+
+The researchers chose WebAssembly because it uniquely provides all the requirements for modern IoT systems:
+\begin{itemize}
+\item Partial updates without system restart
+\item Cross-platform deployment (ARM device $\rightarrow$ x86 cloud $\rightarrow$ ARM edge)
+\item ML model execution (complex algorithms)
+\item Minimal resource usage (embedded constraints)
+\item Security isolation (untrusted code execution)
+\end{itemize}
+
+WebAssembly is the only solution that provides true platform agnosticism, lightweight execution, dynamic updates, and rich programming support - all essential for the IoT use cases described in the research. While Docker and eBPF have their strengths, they are more limited in their applicability to the specific IoT requirements addressed in this study.
+
+\end{document}

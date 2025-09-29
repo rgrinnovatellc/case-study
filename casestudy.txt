@@ -1,0 +1,151 @@
+Case Study Assignment for Students 
+
+In this assignment, you will work with a partner on a two-student team to:
+•
+
+Select a suitable topic for a case study of an IoT system, application, and/or design;
+
+•
+
+Submit a proposal for possible feedback and approval by the instructor that specifies the topic
+and references to be used;
+
+•
+
+Conduct research on the topic of your case study relying on the specified references and,
+perhaps, additional references;
+
+•
+
+Prepare a one-page abstract of the case student with references, two review questions with
+solutions, and an 8-minute presentation on the use case; and
+
+•
+
+Present the use case in class within eight minutes and allowing an additional two minutes to
+answer any questions from other students and/or the instructor.
+
+Case Study Topic Selection
+
+Each team should select a topic for their case study that is a production, prototype, or research
+deployment of an IoT system or that is a specific IoT application or design that has been implemented in
+production, as a prototype, or as a research project. The topic may be in any application domain such as
+smart cities, smart campus, smart home, smart farm, environment, manufacturing, healthcare,
+eldercare, social interaction, safety and security, art and performance, etc.
+The topic should be based on one or more references that describe the topic in depth. The primary
+reference should be in a reputable publication such as the IEEE Internet of Things Magazine, the IEEE
+Internet of Things Journal, or the conference proceedings of the IEEE World Forum on Internet of
+Things. 1 These and other suitable sources can be found on IEEE Xplore (https://ieeexplore.ieee.org/).
+Other references should be used for additional details about the system, application, or design or about
+technologies used in the system.
+You will want to select a topic that allows you to discuss multiple aspects of the deployment,
+application, and/or design including at least three of the following features.
+•
+
+Motivation for and/or problem addressed by the system, application, or design
+
+•
+
+Technologies used, such as communications, processing, cloud and edge computing, sensors,
+and actuators
+
+•
+
+Design tradeoffs
+
+•
+
+Security and/or privacy
+
+•
+
+Outcomes, such as success or failure, and the reasons for the outcomes
+
+Case Study Proposal Submission
+
+You and your partner must first join the same group at the class Canvas site. 2 After you have joined the
+same group, you and your partner must each submit a proposal by the specified due date using the
+1
+2
+
+This is not an exhaustive list of suitable primary sources.
+The instructor will work with the class to find a solution if there is an odd number of students in ECE 5984.
+
+Case Study Assignment for Students in ECE 5984
+
+1
+
+“Case Study Proposal” assignment at the class Canvas site. The proposal requires submission of the
+following information in a Canvas “quiz.”
+•
+•
+•
+
+The name and email address of your partner
+The proposed subject of your case study
+At least two references that you will use for the assignment
+
+Case Study Materials Submission
+
+You must prepare the following items and submit them in the “Case Study Materials” assignment at the
+class Canvas site. Submit a single zip file as described below.
+•
+
+A one-page abstract of your case study. The document should include a list of all references
+used in your research for the abstract and presentation, but the reference list does not need to
+be included in the one-page limit. The title of the case study and the names and email addresses
+of the team members should be at the top of the abstract and are included in the one-page
+limit. Text should use a common 11-point font, single-spaced, with one-inch margins. You will be
+graded on the content of the abstract, not on whether or not it uses all of the one-page limit.
+The abstract must be submitted as a single PDF or Word document.
+
+•
+
+A presentation on your case study. The presentation should include a title slide with title and
+team members names and email addresses, at least one graphical representation of the topic, a
+single summary slide, and a final slide providing a list of references (repeated from the abstract).
+The presentation should cover multiple key aspects of the case study as described above in the
+section on “Case Study Topic Selection.” Presentations are expected to include at least 8 slides
+total and no more than 12 slides total and must be able to be presented in 8 minutes without
+rushing. The presentation must be submitted as a single PDF or PowerPoint document.
+
+•
+
+Two short-answers questions with solutions on important aspects of your case study that are
+covered in the presentation. The list of references does not need to be presented. The
+questions and solutions must be submitted as a single PDF, text, or Word document.
+
+Note that all three files are to be combined into a single zip file for submission.
+
+Case Study In-Class Presentation
+
+Each team will present their case study in class, using the submitted presentation and incorporating any
+feedback from the instructor. The presentation should take eight minutes. An additional two minutes
+will be available for questions from students and/or the instructor. Both team members must
+participate fully in the presentation. Check announcements in Canvas concerning signing up for a
+presentation time.
+There is no submission on Canvas for this part of the assignment.
+
+Grading
+
+This assignment has a total point value of 50 which is distributed as follows.
+•
+
+Case Study Proposal – 5 points. Both team members must submit a complete proposal by the
+due date.
+
+•
+
+Case Study Material – 30 points. Case study material will be assessed on technical depth, clarity,
+and readability of the abstract and submitted presentation file as well as the suitability of the
+two review questions and solutions. Make only one submission per team.
+
+Case Study Assignment for Students in ECE 5984
+
+2
+
+Case Study Presentation – 15 points. The case study presentation will be assessed based on the
+technical depth and clarity of the presentation, participation by both team members, and
+responses to questions. Make only one submission per team.
+
+

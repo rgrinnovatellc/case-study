@@ -1,0 +1,27 @@
+Diagram (Non-Isomorphic)
+| IoT Device |
++-----------------------------+
+| Arduino/C++ firmware        |
+| Sensor & actuator logic     |
+| Local data processing       |
+
+| Edge Server |
++-----------------------------+
+| Node.js / Python app        |
+| Data aggregation & filtering|
+| Edge-level analytics        |
+
+| Cloud |
++-----------------------------+
+| Java / Go / Python service  |
+| Centralized storage         |
+| Visualization & ML          |
+
+
+
+Implications
+    Multiple codebases: one for device, one for edge, one for cloud.
+    Increased maintenance: each change might require updating all three layers.
+    Slower development: developers must implement similar logic multiple times in different languages.
+    Higher risk of inconsistency: behavior may differ between layers due to implementation differences.
+

@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{cite}
+
+% Professional font setup
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}  % Times New Roman for text
+\usepackage[scaled=0.9]{helvet}  % Helvetica for sans-serif
+\usepackage{courier}   % Courier for monospace
+\renewcommand{\familydefault}{\rmdefault}  % Use Times as default
+
+\title{Case Study Proposal: Dynamic IoT Applications and Isomorphic IoT Systems Using WebAssembly}
+\author{Uddhav P. Gautam, Ram Mude\\
+\small upgautam@vt.edu, ramm@vt.edu}
+\date{}
+
+\begin{document}
+\maketitle
+
+\singlespacing
+
+
+\section*{Selected Paper for Case Study}
+We propose to conduct a case study analysis of the paper \emph{Dynamic IoT Applications and Isomorphic IoT Systems Using WebAssembly} by Kuribayashi et al.~\cite{10539584}, published at the 2023 IEEE World Forum on Internet of Things (WF-IoT).
+
+\section*{Case Study Overview}
+This case study will examine the paper's approach to solving IoT deployment challenges through WebAssembly technology. We will analyze the paper's technical contributions, evaluate its methodology and results, and assess its implications for IoT system development. Additionally, we will compare WebAssembly with similar runtime technologies to understand the tradeoffs and advantages of different approaches for dynamic IoT applications.
+
+\section*{Rationale for Selection}
+We selected this paper for our case study because it addresses critical challenges in modern IoT development that are highly relevant to current industry needs:
+
+\begin{itemize}
+\item \textbf{Real-world relevance:} The paper tackles actual problems faced by IoT developers today, including rapid update requirements and multi-layer system complexity.
+\item \textbf{Innovative approach:} The use of WebAssembly for IoT applications represents a novel and promising solution to traditional IoT deployment challenges.
+\item \textbf{Practical implementation:} The authors provide concrete implementation details and performance evaluations, making it suitable for in-depth technical analysis.
+\item \textbf{Comprehensive scope:} The paper covers both dynamic applications and isomorphic systems, providing rich material for case study analysis.
+\end{itemize}
+
+This paper offers excellent opportunities to analyze technical design decisions, evaluate performance tradeoffs, and assess the practical viability of WebAssembly-based IoT solutions. A key learning objective is understanding why the authors chose WebAssembly over other platform-agnostic runtime technologies for their IoT solution.
+
+\section*{Case Study Analysis Framework}
+Our case study will examine the following key aspects of the paper:
+
+\begin{enumerate}
+\item \textbf{Technical Analysis:} How does the WebAssembly-based approach solve traditional IoT deployment challenges?
+\item \textbf{Architecture Evaluation:} What are the design strengths and limitations of the proposed dynamic and isomorphic IoT systems?
+\item \textbf{Performance Assessment:} How effective are the authors' performance evaluations and what do the results reveal about practical viability?
+\item \textbf{Implementation Review:} What insights can be gained from the authors' implementation choices and methodology?
+\item \textbf{Impact Analysis:} What are the broader implications of this research for IoT system development and deployment?
+\item \textbf{Technology Comparison:} How does WebAssembly compare to alternative runtime technologies (eBPF, containers, virtual machines, language-specific runtimes) for dynamic IoT applications?
+\end{enumerate}
+
+\section*{Key Technologies and Concepts to Analyze}
+Our case study will focus on the following technical elements from the paper:
+
+\subsection*{Core Technologies}
+We want to validate and see the internals of the system, which was built using WebAssembly (Wasm) runtime and execution environment. We will investigate how the Wasmtube bridging library~\cite{wasmtube2023} enables Elixir–Wasm communication and examine the Apache TVM framework~\cite{apachetvm2023} for machine learning model compilation. Additionally, we will explore how the Nerves platform~\cite{nerves2023} facilitates embedded Elixir development and analyze the Linux \texttt{inotify} API for dynamic update detection mechanisms.
+
+\subsection*{Performance and Design Analysis}
+We want to validate and see the internals of the performance improvements, which demonstrated significant update time reductions from traditional firmware updates ($>$10s) to Wasm-based updates ($\sim$1.4s). We will investigate the performance overhead analysis of Wasm function calls ($\sim$200µs) and examine how machine learning model execution performs with ResNet-50 and MobileNetV2. Additionally, we will analyze the cross-platform deployment capabilities and code reuse benefits that enable isomorphic system architectures.
+
+\subsection*{Architecture Evaluation}
+We want to validate and see the internals of the architecture design, which implements dynamic IoT application design patterns. We will investigate how the isomorphic system architecture operates across device, edge, and cloud layers, examining the security and isolation mechanisms provided by WebAssembly. Additionally, we will analyze the implementation challenges and tradeoffs that the authors encountered during system development.
+
+
+\section*{Educational Value and Learning Outcomes}
+This case study will enhance our understanding of IoT system design and modern runtime technologies through hands-on analysis of a real research implementation. We will develop practical skills in evaluating technical tradeoffs, understanding performance implications, and making informed technology choices for IoT applications. The comparative analysis with alternative runtime technologies will provide insights into when and why to choose different approaches, preparing us for future IoT system design decisions. Additionally, this study will strengthen our ability to critically analyze research papers, extract practical insights, and apply theoretical concepts to real-world scenarios.
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
